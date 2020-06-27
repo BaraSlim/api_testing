@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '0.1'
+
+sourceCompatibility = 1.8
+
+//Repo
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+//Common variables for dependencies
+ext {
+    restAssuredVersion = "4.3.0"
+}
+
+//Dependencies
+dependencies {
+    compile group: 'junit', name: 'junit', version: '4.12'
+    compile "io.rest-assured:scala-support:$restAssuredVersion"
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
+    compile group: 'io.qameta.allure', name: 'allure-rest-assured', version: '2.12.1'
+}
