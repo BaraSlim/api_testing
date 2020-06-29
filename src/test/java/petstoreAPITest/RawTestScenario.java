@@ -1,23 +1,23 @@
 package petstoreAPITest;
 
-import io.swagger.petspore.models.pet.PetModel;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
+import io.swagger.petspore.models.pet.PetModel;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-public class CommonTest {
+public class RawTestScenario {
 
 
     @Test
-    public void Test() {
+    public void RawAPITest() {
         String dogName = RandomStringUtils.randomAlphabetic(5);
         String dogId = RandomStringUtils.randomNumeric(5);
-        int dogId2 = RandomUtils.nextInt(0,9999);
+        int dogId2 = RandomUtils.nextInt(0, 9999);
 
         RestAssured.given()                                                         //"дано"
                 .baseUri("https://petstore.swagger.io/")                            //доменный адрес
@@ -37,21 +37,21 @@ public class CommonTest {
     }
 
     @Test
-    public void Test2(){
-
-        int dogId2 = RandomUtils.nextInt(0,9999);
-        PetModel petModel = new PetModel(dogId2,null,"Jacobs",null, null,"aviable");
+    public void RawWithRQBuilderTest() {
+        int dogId2 = RandomUtils.nextInt(0, 9999);
+        PetModel petModel = new PetModel(dogId2, null, "Jacobs", null, null, "aviable");
         RequestSpecification builder = new RequestSpecBuilder()       //спецификация запросов.
                 .setBaseUri("https://petstore.swagger.io/")
                 .setBasePath("v2/pet")
                 .setContentType(ContentType.JSON)
                 .setAccept("application/json")
-                .addHeader("api_key","55555").build();
+                .addHeader("api_key", "55555").build();
 
         RestAssured.given(builder)
                 .body(petModel)
                 .when().post().then()
                 .extract().response().prettyPrint();
-        }
+
+    }
 
 }

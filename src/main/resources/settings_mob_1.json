@@ -1,0 +1,17 @@
+{
+  "senders": [
+    {
+      "login": "Jacob",
+      "loginID": "4412345",
+      "phoneNumber": "9251144444",
+      "description": "defaultPet"
+    },
+    {
+      "login": "Samuel",
+      "loginID": "4412346",
+      "phoneNumber": "9251122222",
+      "description": "defaulPet2"
+    }
+
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "senders": [
+    {
+      "login": "Ivan",
+      "loginID": "4488945",
+      "phoneNumber": "9251144444",
+      "description": "defaultPet"
+    },
+    {
+      "login": "Vladimir",
+      "loginID": "4412346",
+      "phoneNumber": "9251122222",
+      "description": "defaulPet2"
+    }
+  ],
+  "recievers": [
+    {
+      "phone": "9773614170",
+      "login": "8885555",
+      "description": "mainReciever"
+    }
+  ],
+  "password": "112233",
+  "csaHost": "http://io.petstore.swagger"
+}
