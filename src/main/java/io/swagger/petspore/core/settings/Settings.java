@@ -110,10 +110,7 @@ public class Settings {
         throw new AutotestException("Sender с описанием \"" + description + "\" не найден в файле настроек " + SETTINGS_FILE_NAME);
     }
 
-    /*
-        Инициализация файла с настройками
-
-     */
+    //Инициализация файла с настройками
 
     public static void settingsInit(String fileName) {
         gson = new GsonBuilder().setPrettyPrinting().create();
