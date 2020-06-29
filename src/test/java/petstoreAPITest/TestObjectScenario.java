@@ -6,6 +6,7 @@ import io.swagger.petspore.models.pet.PetModel;
 import io.swagger.petspore.utils.Properties;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class TestObjectScenario {
@@ -25,7 +26,9 @@ public class TestObjectScenario {
         String mobApp = Properties.get("mobApp");
         String phoneNumber = BaseContext.getPhoneBySenderDescription("defaultPet");
         PetModel petModel = new PetModel(12224, null, phoneNumber, null, null, mobApp);
-        PetModel pet = new PetController(petModel).addNewPet();
+        PetModel pet = new PetController(petModel).addNewPet();         //возвращает RS по модели.
+        Assert.assertEquals("Ошибка имена не равны",pet.getName(),phoneNumber);
+//        BaseContext.waitFor(5);
+        Assert.assertTrue("Сообщения не равны",pet.getStatus().equalsIgnoreCase(mobApp));
     }
-
 }

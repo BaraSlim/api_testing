@@ -1,6 +1,7 @@
 package io.swagger.petspore.context;
 
 import io.swagger.petspore.core.settings.Settings;
+import io.swagger.petspore.core.settings.exception.AutotestException;
 import io.swagger.petspore.utils.Properties;
 
 /*
@@ -17,5 +18,14 @@ public abstract class BaseContext {
 
     public static final String getPhoneBySenderDescription(String description) {
         return phoneNumber = Settings.getInstance().getPhoneNumberByDescription(description);
+    }
+
+
+    public static void waitFor(int seconds) {
+        try {
+            Thread.sleep(seconds);
+        } catch (Exception e) {
+            throw new AutotestException(e.toString());
+        }
     }
 }
