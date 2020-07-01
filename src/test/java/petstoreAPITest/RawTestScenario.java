@@ -14,7 +14,7 @@ public class RawTestScenario {
 
 
     @Test
-    public void RawAPITest() {
+    public void rawAPITest() {
         String dogName = RandomStringUtils.randomAlphabetic(5);
         String dogId = RandomStringUtils.randomNumeric(5);
         int dogId2 = RandomUtils.nextInt(0, 9999);
@@ -37,7 +37,7 @@ public class RawTestScenario {
     }
 
     @Test
-    public void RawWithRQBuilderTest() {
+    public void rawWithRQBuilderTest() {
         int dogId2 = RandomUtils.nextInt(0, 9999);
         PetModel petModel = new PetModel(dogId2, null, "Jacobs", null, null, "aviable");
         RequestSpecification builder = new RequestSpecBuilder()       //спецификация запросов.

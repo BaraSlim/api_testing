@@ -5,10 +5,14 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import io.swagger.petspore.context.Const;
 import io.swagger.petspore.models.pet.PetModel;
 import org.hamcrest.Matchers;
+
+import static io.restassured.RestAssured.given;
 
 public class PetController {
 
@@ -20,7 +24,7 @@ public class PetController {
 
         petReqSpec = new RequestSpecBuilder()            //спецификатор для request
                 .addHeader("api_key", "55555")
-                .setBaseUri("http://petstore.swagger.io")
+                .setBaseUri(Const.BASEURL.getTitle())
                 .setBasePath("/v2/pet")
                 .setContentType(ContentType.JSON)
                 .setAccept("application/json")
@@ -34,8 +38,12 @@ public class PetController {
 
     }
 
+    public void getPet(String idValue) {
+        given(petReqSpec).get(idValue).prettyPrint();
+    }
+
     public PetModel addNewPet() {        //экземпляр PetModel соответсвует полям body для POST запроса.
-        return RestAssured.given(petReqSpec)
+        return given(petReqSpec)
                 .body(pet)             //передается сформированное на основе model классов, специальное body запроса для POST
                 .when()
                 .post()
@@ -44,5 +52,18 @@ public class PetController {
                 .extract()
                 .response()
                 .as(PetModel.class);    //для дисериализации response к модели PetModel
+    }
+
+    public PetModel upDatePet() {
+       Response response = given(petReqSpec)
+                .body(pet)
+                .put();
+       response.prettyPrint();
+       return response.as(PetModel.class);
+
+    }
+
+    public void deletePet(String idValue) {
+        given(petReqSpec).delete(idValue).prettyPrint();
     }
 }
